@@ -1,6 +1,8 @@
 # FolderFilesManagment
 It is for managing files in folders
 
+For the first usage, I recomand creating a backup of the folder you want to use it on. Just for safety.
+
 When starting the programm, you first have to select a folder.
 Than you've 3 options:
 1: Rename all files in all subfolders, according to their folder name. They names are sorted by the date of creation.
