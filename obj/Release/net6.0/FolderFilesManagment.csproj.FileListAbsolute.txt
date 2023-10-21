@@ -1,0 +1,15 @@
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\FolderFilesManagment.exe
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\FolderFilesManagment.deps.json
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\FolderFilesManagment.runtimeconfig.json
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\FolderFilesManagment.dll
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\FolderFilesManagment.pdb
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.csproj.AssemblyReference.cache
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.AssemblyInfoInputs.cache
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.AssemblyInfo.cs
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.csproj.CoreCompileInputs.cache
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.dll
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\refint\FolderFilesManagment.dll
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.pdb
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\FolderFilesManagment.genruntimeconfig.cache
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\obj\Release\net6.0\ref\FolderFilesManagment.dll

@@ -1,0 +1,5 @@
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\publish\FolderFilesManagment.exe
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\publish\FolderFilesManagment.dll
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\publish\FolderFilesManagment.deps.json
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\publish\FolderFilesManagment.runtimeconfig.json
+C:\Users\Test Wilkes\Desktop\desktop C#\Projekte\2023 10 19\FolderFilesManagment\FolderFilesManagment\bin\Release\net6.0\publish\FolderFilesManagment.pdb
