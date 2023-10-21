@@ -64,7 +64,7 @@ namespace Setup
             }
         }
 
-        static void fillBlacklist()
+        public static void fillBlacklist()
         {
             blacklistBoth.Add("000FolderFilesManagment");
             blacklistBoth.Add("000NewFiles");

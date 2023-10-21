@@ -49,7 +49,6 @@ namespace FolderFilesFinder
             List<string> files = new List<string>();
             foreach (FileInfo fileInfo in fileInfos)
             {
-                Console.WriteLine(fileInfo.Name.ToString() + ": " + fileInfo.CreationTime.ToString());
                 files.Add(fileInfo.Name);
             }
             return files;

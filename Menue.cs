@@ -65,6 +65,7 @@ namespace Menue
 
         static void renameFiles(bool linkRenamedFiles)
         {
+            Setup.Setup.fillBlacklist();
             List<string> folders = null;
             List<List<string>> files = null;
             if (!linkRenamedFiles)
@@ -100,6 +101,7 @@ namespace Menue
 
         static void linkNewFiles()
         {
+            Setup.Setup.fillBlacklist();
             (List<string> folders, List<List<string>> files) = getFolders(2);
             Console.WriteLine("What is the maximum age in days for files to get linked?:");
             float daysAgo = float.Parse(Console.ReadLine());
