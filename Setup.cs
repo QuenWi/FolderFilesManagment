@@ -12,7 +12,7 @@ namespace Setup
 
         static string setupFolderPath = "";
         static string blacklistFilePath = "";
-        static string logsFilePath = "";
+        public static string logsFilePath = "";
 
         static string newFilesPath = "";
 
@@ -121,12 +121,9 @@ namespace Setup
             return false;
         }
 
-        public static void writeLog(string fileOriginalName, string fileNewName, DateTime now)
+        public static void writeLog(StreamWriter logsStream, string fileOriginalName, string fileNewName, DateTime now)
         {
-            using (StreamWriter logsStream = new StreamWriter(logsFilePath, append: true))
-            {
-                logsStream.WriteLine(now.ToString() + ": " + "\"" + fileOriginalName + "\" -> \"" + fileNewName + "\"");
-            }
+            logsStream.WriteLine(now.ToString() + ": " + "\"" + fileOriginalName + "\" -> \"" + fileNewName + "\"");
         }
 
         public static void deleteAllNewFiles()
@@ -152,17 +149,22 @@ namespace Setup
         public static void copyFile(string file)
         {
             string copyTo = newFilesPath + file.Substring(file.LastIndexOf("\\"));
-            File.Copy(file, copyTo);
+            if (!File.Exists(copyTo))
+            {
+                File.Copy(file, copyTo);
+            }
         }
 
         public static void linkFile(string file)
         {
             string linkTo = newFilesPath + file.Substring(file.LastIndexOf("\\")).Split(".")[0] + ".url";
-
-            using (StreamWriter writer = new StreamWriter(linkTo))
+            if (!File.Exists(linkTo))
             {
-                writer.WriteLine("[InternetShortcut]");
-                writer.WriteLine("URL=file:///" + file);
+                using (StreamWriter writer = new StreamWriter(linkTo))
+                {
+                    writer.WriteLine("[InternetShortcut]");
+                    writer.WriteLine("URL=file:///" + file);
+                }
             }
         }
     } 

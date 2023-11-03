@@ -106,8 +106,13 @@ namespace Menue
             Console.WriteLine("What is the maximum age in days for files to get linked?:");
             float daysAgo = float.Parse(Console.ReadLine());
             DateTime now = DateTime.Now.AddDays(-daysAgo);
+            Console.WriteLine("Should the 000NewFiles folder be cleared before? [y]: ");
+            string input = Console.ReadLine();
+            if (input == "y" || input == "yes")
+            {
+                Setup.Setup.deleteAllNewFiles();
+            }
             Console.WriteLine("Start linking new files.");
-            Setup.Setup.deleteAllNewFiles();
             for (int i = 0; i < folders.Count; i++)
             {
                 string folder = folders[i] + "\\";
@@ -179,27 +184,30 @@ namespace Menue
             {
                 fileNames = folder + "\\Troubleshooting_";
             }
-            for (int fileNumber = 1; fileNumber <= files.Count; fileNumber++)
+            using (StreamWriter logsStream = new StreamWriter(Setup.Setup.logsFilePath, append: true))
             {
-                string file = folder + "\\" + files[fileNumber - 1];
-                string prediction = fileNames + fileNumberToString(fileNumber) + file.Substring(file.LastIndexOf("."));
-                if (!prediction.Equals(file))
+                for (int fileNumber = 1; fileNumber <= files.Count; fileNumber++)
                 {
-                    if (!File.Exists(prediction))
+                    string file = folder + "\\" + files[fileNumber - 1];
+                    string prediction = fileNames + fileNumberToString(fileNumber) + file.Substring(file.LastIndexOf("."));
+                    if (!prediction.Equals(file))
                     {
-                        FileInfo fileInfo = new FileInfo(file); 
-                        DateTime creationDate = fileInfo.CreationTime;
-                        fileInfo.MoveTo(prediction);
-                        File.SetCreationTime(prediction, creationDate); //to avoid the file system tunnelling. (wrong creationTime)
-                        Setup.Setup.writeLog(file, prediction, now);
-                        if (linkRenamed && !troubleshooting)
+                        if (!File.Exists(prediction))
                         {
-                            Setup.Setup.copyOrLinkFile(prediction);
+                            FileInfo fileInfo = new FileInfo(file);
+                            DateTime creationDate = fileInfo.CreationTime;
+                            fileInfo.MoveTo(prediction);
+                            File.SetCreationTime(prediction, creationDate); //to avoid the file system tunnelling. (wrong creationTime)
+                            Setup.Setup.writeLog(logsStream, file, prediction, now);
+                            if (linkRenamed && !troubleshooting)
+                            {
+                                Setup.Setup.copyOrLinkFile(prediction);
+                            }
                         }
-                    }
-                    else
-                    {
-                        return false;
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
             }

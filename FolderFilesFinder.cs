@@ -45,7 +45,8 @@ namespace FolderFilesFinder
 
         public static List<string> getFilesInFolder(string folder)
         {
-            List<FileInfo> fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ToList();
+            List<FileInfo> fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastWriteTime).ToList();
+            //List<FileInfo> fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ToList();
             List<string> files = new List<string>();
             foreach (FileInfo fileInfo in fileInfos)
             {
