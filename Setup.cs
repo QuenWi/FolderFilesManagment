@@ -52,6 +52,13 @@ namespace Setup
                 Directory.CreateDirectory(setupFolderPath);
                 File.Create(blacklistFilePath).Close();
                 File.Create(logsFilePath).Close();
+                if (!File.Exists(Directory.GetCurrentDirectory() + "\\sortByOption.txt"))
+                {
+                    using (StreamWriter sw = File.CreateText(Directory.GetCurrentDirectory() + "\\sortByOption.txt"))
+                    {
+                        sw.WriteLine("1");
+                    }
+                }
                 Directory.CreateDirectory(newFilesPath);
                 using (StreamWriter logsStream = new StreamWriter(blacklistFilePath))
                 {
@@ -165,6 +172,15 @@ namespace Setup
                     writer.WriteLine("[InternetShortcut]");
                     writer.WriteLine("URL=file:///" + file);
                 }
+            }
+        }
+
+        public static void printBlacklist()
+        {
+            String[] lines = File.ReadAllLines(blacklistFilePath);
+            for (var i = 0; i < lines.Length; i += 1)
+            {
+                Console.Out.WriteLine(lines[i]);
             }
         }
     } 

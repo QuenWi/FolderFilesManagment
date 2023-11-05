@@ -1,6 +1,7 @@
 ﻿
 using FolderFilesFinder;
 using System.IO.Enumeration;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Threading.Channels;
 
@@ -13,13 +14,15 @@ namespace Menue
         static void Main(string[] args)
         {
             Console.WriteLine("starting...");
+            Console.WriteLine("Run on own risk. If you don't want to lose the files, than it can be recommanded to create a backup.");
             chooseFolder();
             menue();
         }
 
         static void menue()
         {
-            Console.WriteLine("\nmenue...\n1: Rename Files\n2: Link new Files\n3: Rename Files and link renamed\n9: Change Folder");
+            Console.WriteLine("\nmenue...\n1: Rename Files\n2: Link new Files\n3: Rename Files and link renamed" +
+                "\n7: Print Blacklist\n8: Change Sorting By Time\n9: Change Folder");
             string choosenOption = Console.ReadLine();
             if(choosenOption == "1")
             {
@@ -31,6 +34,14 @@ namespace Menue
             else if (choosenOption == "3")
             {
                 renameAndLinkThem();
+            }
+            else if (choosenOption == "7")
+            {
+                Setup.Setup.printBlacklist();
+            }
+            else if (choosenOption == "8")
+            {
+                changeSortBy();
             }
             else if (choosenOption == "9")
             {
@@ -212,6 +223,20 @@ namespace Menue
                 }
             }
             return true;
+        }
+
+        static void changeSortBy()
+        {
+            FolderFilesFinder.FolderFilesFinder.printSortByOption();
+            Console.WriteLine("You would like to change after what to sort by? [y, n]:");
+            string userInput = Console.ReadLine();
+            if (userInput == "y" || userInput == "yes")
+            {
+                Console.WriteLine("1: LastWriteTime\n2: CreationTime\n3: LastAccessTime");
+                int sortByOption = int.Parse(Console.ReadLine());
+                FolderFilesFinder.FolderFilesFinder.changeSortByOption(sortByOption);
+            }
+            Console.WriteLine("");
         }
     }
 }

@@ -6,6 +6,8 @@ namespace FolderFilesFinder
 {
     class FolderFilesFinder
     {
+        static int sortByOption = -1;
+
         public static List<string> getAllSubfolders(string folderPath, int blacklistNumber)
         {
             List<string> folders = new List<string>();
@@ -35,6 +37,7 @@ namespace FolderFilesFinder
 
         public static List<List<string>> getFilesInFolders(List<string> folders)
         {
+            setSortByOption();
             List<List<string>> files = new List<List<string>>();
             foreach (string folder in folders)
             {
@@ -45,14 +48,71 @@ namespace FolderFilesFinder
 
         public static List<string> getFilesInFolder(string folder)
         {
-            List<FileInfo> fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastWriteTime).ToList();
-            //List<FileInfo> fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ToList();
+            setSortByOption();
+            List<FileInfo> fileInfos = null;
+            if(sortByOption == 2)
+            {
+                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ToList();
+            } else if(sortByOption == 3)
+            {
+                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastAccessTime).ToList();
+            }
+            else
+            {
+                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastWriteTime).ToList();
+            }
             List<string> files = new List<string>();
             foreach (FileInfo fileInfo in fileInfos)
             {
                 files.Add(fileInfo.Name);
             }
             return files;
+        }
+
+        public static void printSortByOption()
+        {
+            string sortByFilePath = Directory.GetCurrentDirectory() + "\\sortByOption.txt";
+            string sortByOptionString = File.ReadAllText(sortByFilePath);
+            if (sortByOptionString == "2")
+            {
+                Console.Out.WriteLine("CreationTime");
+            } else if (sortByOptionString == "3")
+            {
+                Console.Out.WriteLine("LastAccessTime");
+            }
+            else
+            {
+                Console.Out.WriteLine("LastWriteTime");
+            }
+        }
+
+        static void setSortByOption()
+        {
+            string sortByFilePath = Directory.GetCurrentDirectory() + "\\sortByOption.txt";
+            string sortByOptionString = File.ReadAllText(sortByFilePath);
+            try
+            {
+                sortByOption = int.Parse(sortByOptionString);
+            } catch
+            {
+                Console.Out.WriteLine("Mistake with SortByOption. Please run menue option 8 and change the option!");
+                string userInput = Console.ReadLine();
+                Environment.Exit(1);
+            }
+            
+        }
+
+        public static void changeSortByOption(int option)
+        {
+            string sortByFilePath = Directory.GetCurrentDirectory() + "\\sortByOption.txt";
+            if(!(option == 1 || option == 2 || option == 3))
+            {
+                option = 1;
+            }
+            using (StreamWriter logsStream = new StreamWriter(sortByFilePath, append: false))
+            {
+                logsStream.Write(option.ToString());
+            }
         }
     }
 }
