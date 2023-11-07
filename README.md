@@ -14,3 +14,5 @@ Than you've 3 options:
 
 Additionally, you can blacklist folders. If a folder is in a blacklist, than it and its subfolders will get ignored.
 If you want to sort files different (for example creationTime), than you only have to edit one line inside the getFilesInFolder-method.
+
+The programm was written in C#, Microsoft Visual Studio, .Net 6.
