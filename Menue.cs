@@ -1,10 +1,4 @@
 ﻿
-using FolderFilesFinder;
-using System.IO.Enumeration;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Threading.Channels;
-
 namespace Menue
 {
     class Menue
@@ -232,7 +226,7 @@ namespace Menue
             string userInput = Console.ReadLine();
             if (userInput == "y" || userInput == "yes")
             {
-                Console.WriteLine("1: LastWriteTime\n2: CreationTime\n3: LastAccessTime");
+                Console.WriteLine("1: LastWriteTime\n2: CreationTime");
                 int sortByOption = int.Parse(Console.ReadLine());
                 FolderFilesFinder.FolderFilesFinder.changeSortByOption(sortByOption);
             }

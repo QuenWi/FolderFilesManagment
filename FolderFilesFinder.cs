@@ -1,7 +1,4 @@
 ﻿
-
-using System.Diagnostics.Metrics;
-
 namespace FolderFilesFinder
 {
     class FolderFilesFinder
@@ -53,11 +50,7 @@ namespace FolderFilesFinder
             if(sortByOption == 2)
             {
                 fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ToList();
-            } else if(sortByOption == 3)
-            {
-                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastAccessTime).ToList();
-            }
-            else
+            } else
             {
                 fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastWriteTime).ToList();
             }
@@ -76,11 +69,7 @@ namespace FolderFilesFinder
             if (sortByOptionString == "2")
             {
                 Console.Out.WriteLine("CreationTime");
-            } else if (sortByOptionString == "3")
-            {
-                Console.Out.WriteLine("LastAccessTime");
-            }
-            else
+            } else 
             {
                 Console.Out.WriteLine("LastWriteTime");
             }
@@ -105,7 +94,7 @@ namespace FolderFilesFinder
         public static void changeSortByOption(int option)
         {
             string sortByFilePath = Directory.GetCurrentDirectory() + "\\sortByOption.txt";
-            if(!(option == 1 || option == 2 || option == 3))
+            if(!(option == 1 || option == 2))
             {
                 option = 1;
             }
