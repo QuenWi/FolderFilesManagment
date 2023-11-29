@@ -49,10 +49,10 @@ namespace FolderFilesFinder
             List<FileInfo> fileInfos = null;
             if(sortByOption == 2)
             {
-                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ToList();
+                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.CreationTime).ThenBy(p => p.Name).ToList();
             } else
             {
-                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastWriteTime).ToList();
+                fileInfos = new DirectoryInfo(folder).GetFiles().OrderBy(p => p.LastWriteTime).ThenBy(p => p.Name).ToList();
             }
             List<string> files = new List<string>();
             foreach (FileInfo fileInfo in fileInfos)
