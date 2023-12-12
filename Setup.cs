@@ -139,14 +139,24 @@ namespace Setup
             }
         }
 
-        public static void copyOrLinkFile(string file) {
-            if (new FileInfo(file).Length < 1000000 * 50)
+        public static void copyOrLinkFile(string file, int option) {
+            if(option == 1)
             {
-                copyFile(file);
+                if (new FileInfo(file).Length < 1000000 * 50)
+                {
+                    copyFile(file);
+                }
+                else
+                {
+                    linkFile(file);
+                }
+            } else if(option == 2)
+            {
+                linkFile(file);
             }
             else
             {
-                linkFile(file);
+                copyFile(file);
             }
         }
 

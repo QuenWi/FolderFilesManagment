@@ -20,7 +20,7 @@ namespace Menue
             string choosenOption = Console.ReadLine();
             if(choosenOption == "1")
             {
-                renameFiles(false);
+                renameFiles(false, 0);
             } else if (choosenOption == "2")
             {
                 linkNewFiles();
@@ -68,7 +68,7 @@ namespace Menue
             }
         }
 
-        static void renameFiles(bool linkRenamedFiles)
+        static void renameFiles(bool linkRenamedFiles, int option)
         {
             Setup.Setup.fillBlacklist();
             List<string> folders = null;
@@ -84,17 +84,17 @@ namespace Menue
             Console.WriteLine("Start renaming Files.");
             for (int i = 0; i < folders.Count; i++)
             {
-                if(!renameFilesInFolder(folders[i], files[i], false, linkRenamedFiles))
+                if(!renameFilesInFolder(folders[i], files[i], false, linkRenamedFiles, option))
                 {
                     Console.WriteLine("Error: Start troubleshooting.");
-                    if (!renameFilesInFolder(folders[i], FolderFilesFinder.FolderFilesFinder.getFilesInFolder(folders[i]), true, false))
+                    if (!renameFilesInFolder(folders[i], FolderFilesFinder.FolderFilesFinder.getFilesInFolder(folders[i]), true, false, option))
                     {
                         Console.WriteLine("Error in troubleshooting!");
                         Environment.Exit(0);
                     }
                     else
                     {
-                        if (!renameFilesInFolder(folders[i], FolderFilesFinder.FolderFilesFinder.getFilesInFolder(folders[i]), false, false))
+                        if (!renameFilesInFolder(folders[i], FolderFilesFinder.FolderFilesFinder.getFilesInFolder(folders[i]), false, false, option))
                         {
                             Console.WriteLine("Error in troubleshooting!");
                             Environment.Exit(0);
@@ -117,6 +117,13 @@ namespace Menue
             {
                 Setup.Setup.deleteAllNewFiles();
             }
+            Console.WriteLine("What option for copy and linking you want to use?\n1: If file smaller than 50MB than copy else link." +
+                "\n2: Link all\n3: Copy all");
+            int option = int.Parse(Console.ReadLine());
+            if (input == "y" || input == "yes")
+            {
+                Setup.Setup.deleteAllNewFiles();
+            }
             Console.WriteLine("Start linking new files.");
             for (int i = 0; i < folders.Count; i++)
             {
@@ -128,7 +135,7 @@ namespace Menue
                     if (now.CompareTo(creationDate) < 0)
                     {
                         //Console.WriteLine(filePath + ", " + Console.WriteLine(new FileInfo(filePath).Length) + ": " + creationDate.ToString() + " > " + now.ToString());
-                        Setup.Setup.copyOrLinkFile(file);
+                        Setup.Setup.copyOrLinkFile(file, option);
                     }
                 }
             }
@@ -142,7 +149,10 @@ namespace Menue
             {
                 Setup.Setup.deleteAllNewFiles();
             }
-            renameFiles(true);
+            Console.WriteLine("What option for copy and linking you want to use?\n1: If file smaller than 50MB than copy else link." +
+                "\n2: Link all\n3: Copy all");
+            int option = int.Parse(Console.ReadLine());
+            renameFiles(true, option);
         }
 
         static (List<string>, List<List<string>>) getFolders(int blacklistNumber)
@@ -177,7 +187,7 @@ namespace Menue
             return fileName;
         }
 
-        static bool renameFilesInFolder(string folder, List<string> files, bool troubleshooting, bool linkRenamed)
+        static bool renameFilesInFolder(string folder, List<string> files, bool troubleshooting, bool linkRenamed, int option)
         {
             string fileNames = "";
             DateTime now = DateTime.Now;
@@ -206,7 +216,7 @@ namespace Menue
                             Setup.Setup.writeLog(logsStream, file, prediction, now);
                             if (linkRenamed && !troubleshooting)
                             {
-                                Setup.Setup.copyOrLinkFile(prediction);
+                                Setup.Setup.copyOrLinkFile(prediction, option);
                             }
                         }
                         else
